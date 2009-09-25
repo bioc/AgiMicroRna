@@ -1,0 +1,26 @@
+#useDynLib(AgiMicroRna)
+
+importClassesFrom(Biobase, eSet, VersionedBiobase, Versioned)
+
+export(readMicroRnaAFE,
+	readTargets,
+	qcPlots,
+	boxplotMicroRna,
+	plotDensityMicroRna,
+	RleMicroRna,
+	mvaMicroRna,
+	mvaBASIC,
+	hierclusMicroRna,
+	HeatMapMicroRna,
+	PCAplotMicroRna,
+	cvArray,
+	tgsMicroRna,
+	tgsNormalization,
+	rmaMicroRna,
+	filterMicroRna,
+	esetMicroRna,
+	writeEset,
+	basicLimma,
+	getDecideTests,
+	pvalHistogram,
+	significantMicroRna)
