@@ -8,6 +8,6 @@ Depends: R (>= 2.9.0), Biobase,limma,affy (>= 1.22),preprocessCore
 Suggests:affycoretools,geneplotter,marray,gplots,gtools,gdata,codelink
 LazyLoad: yes
 Description: Processing and Analysis of Agilent microRNA data 
-License: GPL v3
+License: GPL-3
 biocViews: Microarray,AgilentChip,OneChannel,Preprocessing,DifferentialExpression 
 
