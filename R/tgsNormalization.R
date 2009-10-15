@@ -94,6 +94,9 @@ function(ddTGS,NORMmethod="quantile",
 	}
 	}
 
+  ddNORM$Gb=ddNORM$G
+  ddNORM$R=ddNORM$G 
+  ddNORM$Rb=ddNORM$G
 return(ddNORM)
 
 } # end function 
