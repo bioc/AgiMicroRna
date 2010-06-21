@@ -8,7 +8,8 @@ function(ddNORM,
 	limNEG=75,
 	makePLOT=FALSE,
 	targets,
-	verbose=FALSE) {
+	verbose=FALSE,
+  writeout) {
 
 	if(verbose){
 	cat("FILTERING PROBES BY FLAGS","\n")
@@ -38,19 +39,19 @@ function(ddNORM,
 
 	if(!missing(control)){
 	if(control){
-		ddFILT=filter.control.miRNA(ddNORM,targets,verbose)	
+		ddFILT=filter.control.miRNA(ddNORM,targets,verbose,writeout)	
 			} # FILTERct 
 			}
 
 	if(!missing(IsGeneDetected)){
 	if(IsGeneDetected){
-		ddFILT=filter.IsGeneDetected(ddFILT,limIsGeneDetected,targets,verbose)
+		ddFILT=filter.IsGeneDetected(ddFILT,limIsGeneDetected,targets,verbose,writeout)
 			} # wellaboveBG 
 			}
 
 	if(!missing(wellaboveNEG)){
 	if(wellaboveNEG){
-		ddFILT=filter.wellaboveNEG.miRNA(ddFILT,dd,limNEG,SDtimes=1.5,targets,verbose)
+		ddFILT=filter.wellaboveNEG.miRNA(ddFILT,dd,limNEG,SDtimes=1.5,targets,verbose,writeout)
 			} # wellaboveNEG
 			}
 

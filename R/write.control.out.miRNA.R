@@ -23,20 +23,17 @@ function(ddFILT,selSNR,targets){
 	PROBE_ID=ddFILT$genes$ProbeName
 	values=round(ddFILT$G,3)
 	flagsGID=matrix(ddFILT$other$gIsGeneDetected,nrow=dim(ddFILT)[1],ncol=dim(ddFILT)[2])
-
 	GENE_ID=ddFILT$genes$GeneName
-	probe.chr=ddFILT$other$chr_coord[,1]
 
-		result=data.frame(as.character(PROBE_ID),as.character(GENE_ID),as.character(probe.chr),values)
-
-		colnames(result)=c("PROBE","GENE","Probe Chr-Coord",paste(g2,g1,sep=" - "))
+			result=data.frame(as.character(PROBE_ID),as.character(GENE_ID),values)
+			colnames(result)=c("PROBE","GENE",paste(g2,g1,sep=" - "))
 
 		outfile="NOCtrl_exprs.txt"
 		write.table(result,file=outfile,row.names=F,
 			col.names = TRUE,quote=F,dec=".",eol = "\n",sep = "\t")
 		
-		result=data.frame(PROBE_ID,as.character(GENE_ID),as.character(probe.chr),flagsGID)
-		colnames(result)=c("PROBE & IsGeneDetected - (1 is Found)","GENE","Probe Chr-Coord",paste(g2,g1,sep=" - "))
+		result=data.frame(PROBE_ID,as.character(GENE_ID),flagsGID)
+		colnames(result)=c("PROBE & IsGeneDetected - (1 is Found)","GENE",paste(g2,g1,sep=" - "))
 
 		outfile="NOCtrl_FlagIsGeneDetected.txt"
 		write.table(result,file=outfile,row.names=F,

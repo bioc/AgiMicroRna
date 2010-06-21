@@ -26,11 +26,10 @@ function(fit2,index,outfile,DEmethod,i,adj.pval,fdr,ddset) {
 	fdr=round(fdr[index],5)            
 
 		PROBE_ID=ddset$genes$ProbeName[index]
-		chr_coord=ddset$other$chr_coord[index]
-		
-		result=data.frame(PROBE_ID,as.character(GENE_ID),as.character(chr_coord),
+
+			result=data.frame(PROBE_ID,as.character(GENE_ID),
 			M,A,t,pval,adj.pval,fdr)
-		colnames(result)=c("PROBE","GENE","PROBE chr_coord",
+			colnames(result)=c("PROBE","GENE",
 			"M","A","t","pval","adj.pval","fdr.pval")
 	 
 	write.table(result,file=outfile,row.names=F,col.names = TRUE,quote=F,dec=".",eol = "\n",sep = "\t")
@@ -50,11 +49,10 @@ function(fit2,index,outfile,DEmethod,i,adj.pval,fdr,ddset) {
 	fdr.F.pval=round(fdr[index],5)
 
 		PROBE_ID=ddset$genes$ProbeName[index]
-		chr_coord=ddset$other$chr_coord[index]
-		
-		result=data.frame(PROBE_ID,as.character(GENE_ID),as.character(chr_coord),
+	
+			result=data.frame(PROBE_ID,as.character(GENE_ID),
 			M,A,t,pval,F.stc,F.pval,adj.F.pval,fdr.F.pval)
-		colnames(result)=c("PROBE","GENE","PROBE chr_coord",
+		colnames(result)=c("PROBE","GENE",
 		"M","A","t","t pval","F","F.pval","adj.F.pval","fdr.F.pval")
  
 	write.table(result,file=outfile,row.names=F,col.names = TRUE,quote=F,dec=".",eol = "\n",sep = "\t")

@@ -36,7 +36,6 @@
                 - dd.micro\$other\$gIsSaturated       'FLAG IsSaturated'
                 - dd.micro\$other\$gIsFeatNonUnifOL   'FLAG IsFeatNonUnifOL'
                 - dd.micro\$other\$gIsFeatPopnOL      'FLAG IsFeatPopnOL'
-                - dd.micro\$other\$chr\_coord         'CHR coordinate (obtained from Agilent data files)
                 - dd.micro\$other\$gBGMedianSignal    'gBGMedianSignal'
                 - dd.micro\$other\$gBGUsed    	      'gBGUsed'
 }
@@ -54,7 +53,6 @@
   \item{RGList\$other\$gIsSaturated }{matrix, FLAG to classify signal if 'IsSaturated = 1' or 'not=0'}
   \item{RGList\$other\$gIsFeatPopnOL }{matrix, FLAG to classify signal if 'IsFeatPopnOL = 0' or 'not=1'}
   \item{RGList\$other\$gIsFeatNonUnifOL }{matrix, FLAG to classify signal if 'gIsFeatNonUnifOL = 0' or 'not=1'}
-  \item{RGList\$other\$chr\_coord }{matrix, chr coordinates for the 60 mer Agilent probe}
   \item{RGList\$other\$gBGMedianSignal }{matrix, gBGMedianSignal } 
   \item{RGList\$other\$gBGUsed }{matrix, gBGUsed } 
 }

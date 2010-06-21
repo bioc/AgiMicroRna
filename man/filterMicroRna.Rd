@@ -14,7 +14,8 @@ filterMicroRna(ddNORM,
 	limNEG,
 	makePLOT=FALSE,
 	targets,
-	verbose=FALSE)
+	verbose=FALSE,
+  writeout=FALSE)
 }
 \arguments{
   \item{ddNORM}{RGList with the Total Gene Signal in log2 scale to be FILTERED out according to a Quality FLAG }
@@ -39,6 +40,7 @@ filterMicroRna(ddNORM,
   \item{makePLOT}{logical, if \code{TRUE} makes QC plots with the remaining signals }
   \item{targets}{data.frame with the targets structure }
   \item{verbose}{logical, if \code{TRUE} prints out output} 
+   \item{writeout}{logical, if \code{TRUE} writes out output} 
 }
 \details{
 	Agilent Feature Extraction software provides a flag for each spot

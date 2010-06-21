@@ -1,5 +1,5 @@
 `filter.wellaboveNEG.miRNA` <-
-function(ddFILT,dd,limNEG,SDtimes,targets,verbose){
+function(ddFILT,dd,limNEG,SDtimes,targets,verbose,writeout){
 
 	 
 	if (!is(ddFILT, "RGList")){
@@ -43,10 +43,12 @@ function(ddFILT,dd,limNEG,SDtimes,targets,verbose){
 		
 # WRITING OUT THE WellAboveNeg.out filtered DATA 
 
-
+if(writeout){
 	outfile="IsNOTWellAboveNEG.txt"
 	VALUES=round(ddFILT$G,3)
 	write.filt.out.miRNA(ddFILT,selSNR,outfile,VALUES,targets) 
+}
+
 	      
 		if(verbose){
 		cat("FILTERING BY WellAboveNeg filterWellAboveSIGNALv2 ~ FLAG","\n")

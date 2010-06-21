@@ -1,5 +1,5 @@
 `filter.IsGeneDetected` <-
-function(ddFILT,limIsGeneDetected,targets,verbose){
+function(ddFILT,limIsGeneDetected,targets,verbose,writeout){
 
 	 
 	minFLAGisf=1 	# gIsFound: FLAG ok: 1 = feature FOUND (58)
@@ -30,10 +30,10 @@ function(ddFILT,limIsGeneDetected,targets,verbose){
 
 # WRITING OUT THE REMOVED DATA only geneIDs and selected flags
 
-
-	outfile="IsNOTGeneDetected.txt" 
-	write.filt.out.miRNA(ddFILT,selSNR,outfile,FLAG,targets) 
-
+  if(writeout){
+	 outfile="IsNOTGeneDetected.txt" 
+	 write.filt.out.miRNA(ddFILT,selSNR,outfile,FLAG,targets) 
+ }
 	if(verbose){
 	cat("FILTERING BY IsGeneDetected FLAG","\n") 
 	cat("\n")

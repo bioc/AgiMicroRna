@@ -25,13 +25,10 @@ function(eset,ddPROC,targets,verbose=FALSE) {
 	GENE_ID=featureNames(eset)
 	values=round(exprs(eset),3)
 	PROBE_ID=ddPROC$genes$ProbeName
-	chr_coord=ddPROC$other$chr_coord[,1]
-	
 
-		result=data.frame(PROBE_ID,as.character(GENE_ID),
-			as.character(chr_coord),values)
+		result=data.frame(PROBE_ID,as.character(GENE_ID),values)
 
-		colnames(result)=c("PROBE","GENE","Probe chr_coord",paste(g2,g1,sep=" - "))
+		colnames(result)=c("PROBE","GENE",paste(g2,g1,sep=" - "))
 
 	outfile="ProcessedData.txt"
 	write.table(result,file=outfile,row.names=F,col.names = TRUE,

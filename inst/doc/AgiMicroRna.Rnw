@@ -219,7 +219,6 @@ print(names(dd.micro))
 \texttt{dd.micro\$other\$gIsSaturated} & FLAG IsSaturated \\
 \texttt{dd.micro\$other\$gIsFeatNonUnifOL} & FLAG IsFeatNonUnifOL \\
 \texttt{dd.micro\$other\$gIsFeatPopnOL} & FLAG IsFeatPopnOL \\
-\texttt{dd.micro\$other\$chr\_coord} & CHR coordinate from Agilent data files \\
 \texttt{dd.micro\$other\$gBGMedianSignal} & \texttt{gBGMedianSignal} \\
 \texttt{dd.micro\$other\$gBGUsed} & \texttt{gBGUsed} \\
 \hline
@@ -597,7 +596,8 @@ ddPROC=filterMicroRna(ddNORM,
                     limNEG=25,
                     makePLOT=FALSE,
                     targets.micro,
-		    verbose=TRUE)
+		                verbose=TRUE,
+                    writeout = TRUE)
 @
 
 \section{creating an ExpressionSet object}

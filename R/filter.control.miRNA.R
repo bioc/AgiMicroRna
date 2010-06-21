@@ -1,5 +1,5 @@
 `filter.control.miRNA` <-
-function(ddNORM,targets,verbose){
+function(ddNORM,targets,verbose,writeout){
 
 	if (!is(ddNORM, "RGList")){
 	  stop("'input' must be a RGList")
@@ -29,8 +29,9 @@ function(ddNORM,targets,verbose){
 		
 # WRITING OUT THE RAW DATA WITHOUT CONTROLS 
 
-	write.control.out.miRNA (ddFILT,selSNR,targets)
-	
+if(writeout){
+	write.control.out.miRNA(ddFILT,selSNR,targets)
+}	
 		if(verbose){
     		cat("\n")
 		cat("   FEATURES BEFORE FILTERING: ",dim(ddNORM)[1],"\n")

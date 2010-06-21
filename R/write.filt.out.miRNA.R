@@ -23,19 +23,16 @@ function(ddFILT,selSNR,outfile,FLAG,targets){
 	PROBE_ID=ddFILT$genes$ProbeName[-selSNR]  
 	FLAG=FLAG[-selSNR,]	
 	GENE_ID=ddFILT$genes$GeneName[-selSNR]
-	probe.chr=ddFILT$other$chr_coord[-selSNR,1]
 
 	if(length(PROBE_ID) != 0){
  	if(length(PROBE_ID) ==1){
 
- 		result=data.frame(PROBE_ID,as.character(GENE_ID),
-			as.character(probe.chr),t(FLAG))
+ 		result=data.frame(PROBE_ID,as.character(GENE_ID),t(FLAG))
 	}
  	if(length(PROBE_ID) > 1){
- 		result=data.frame(PROBE_ID,as.character(GENE_ID),
-			as.character(probe.chr),FLAG)
+ 		result=data.frame(PROBE_ID,as.character(GENE_ID),FLAG)
 	}
-		colnames(result)=c("PROBE","GENE","Probe Chr-Coord",paste(g2,g1,sep=" - "))
+		colnames(result)=c("PROBE","GENE",paste(g2,g1,sep=" - "))
 
 		write.table(result,file=outfile,row.names=F,
 			col.names = TRUE,quote=F,dec=".",eol = "\n",sep = "\t")
