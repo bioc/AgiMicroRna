@@ -8,10 +8,10 @@
 filterMicroRna(ddNORM, 
 	dd,
 	control,
-	IsGeneDetected,
-	wellaboveNEG,
-	limIsGeneDetected,
-	limNEG,
+	IsGeneDetected = TRUE,
+	wellaboveNEG = FALSE,
+	limIsGeneDetected = 75,
+	limNEG = 75,
 	makePLOT=FALSE,
 	targets,
 	verbose=FALSE,
@@ -38,9 +38,9 @@ filterMicroRna(ddNORM,
                 for negative controls (Mean + 1.5 x SD)
  }
   \item{makePLOT}{logical, if \code{TRUE} makes QC plots with the remaining signals }
-  \item{targets}{data.frame with the targets structure }
+  \item{targets}{data.frame with the targets structure}
   \item{verbose}{logical, if \code{TRUE} prints out output} 
-   \item{writeout}{logical, if \code{TRUE} writes out output} 
+  \item{writeout}{logical, if \code{TRUE} writes out output files} 
 }
 \details{
 	Agilent Feature Extraction software provides a flag for each spot

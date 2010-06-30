@@ -1,14 +1,14 @@
 `filterMicroRna` <-
 function(ddNORM,
 	dd,
-	control=TRUE,
-	IsGeneDetected=TRUE,
-	wellaboveNEG=FALSE,
+	control,
+	IsGeneDetected,
+	wellaboveNEG,
 	limIsGeneDetected=75,
 	limNEG=75,
-	makePLOT=FALSE,
+	makePLOT,
 	targets,
-	verbose=FALSE,
+	verbose,
   writeout) {
 
 	if(verbose){
