@@ -178,6 +178,37 @@ function, which is a wrapper of the \Rpackage{limma} function \Rfunction{read.ma
 \cite{limma}. \Rfunction{readMicroRnaAFE} creates an \Robject{RGList} object
 that includes the variables that we need for the data processing and statistical analysis.  
 
+By default, \Rfunction{readMicroRnaAFE} calls the \Rfunction{read.maimages} function  
+as it is shown below. 
+
+\begin{Sinput}
+## NOT RUN 
+
+read.maimages(files=targets$FileName,source="agilent",
+            		columns=list(Rf="gTotalGeneSignal",
+                                 Gf="gTotalProbeSignal",
+                                 Rb="gMeanSignal",
+                                 Gb="gProcessedSignal"),
+                   	other.columns=list(IsGeneDetected="gIsGeneDetected",
+                                        IsSaturated="gIsSaturated",
+                                        IsFeatNonUnifOF="gIsFeatNonUnifOL",
+                                        IsFeatPopnOL="gIsFeatPopnOL",
+                                        BGKmd="gBGMedianSignal",
+                                        BGKus="gBGUsed"),
+                     	annotation = c( "ControlType", "ProbeName","GeneName"),
+                     	verbose=TRUE,sep="\t",quote="")
+\end{Sinput}
+
+This implies that in the data files we must have all the columns that are indicated
+in the calling to \Rfunction{read.maimages}. If any of those columns are missing, the 
+\Rfunction{readMicroRnaAFE} will produce an error message. In this case, we will have to 
+call the  \Rfunction{read.maimages} by ourselves, omitting those columns that are not 
+present in the data files. For the data pre-processing and differential expression
+analysis, the columns that we must read at least are: \Robject{gTotalGeneSignal} and/or
+\Robject{gMeanSignal}, \Robject{gIsGeneDetected}, \Robject{ControlType}, \Robject{ProbeName},
+and \Robject{GeneName}. 
+
+A typical use of \Rfunction{readMicroRnaAFE}  is like: 
 
 \begin{Sinput}
 ## NOT RUN 
@@ -268,8 +299,7 @@ greater than the expected feature pixel variance plus the confidence interval.
 outlier.
 
 Finally, the \texttt{dd.micro\$targets} contain the name of the files equal to those in
-target file and the \texttt{dd\$other\$chr\_coord} variable contains the chromosomal
-coordinates provided by the Agilent manufacturer.
+target file. 
 
 
 \section{Plotting Functions}
@@ -592,12 +622,12 @@ ddPROC=filterMicroRna(ddNORM,
                     control=TRUE,
                     IsGeneDetected=TRUE,
                     wellaboveNEG=FALSE,
-                    limIsGeneDetected=50,
+                    limIsGeneDetected=75,
                     limNEG=25,
                     makePLOT=FALSE,
                     targets.micro,
-		                verbose=TRUE,
-                    writeout = TRUE)
+		    verbose=TRUE,
+                    writeout=FALSE)
 @
 
 \section{creating an ExpressionSet object}
@@ -813,7 +843,6 @@ The information that is given for each gene is shown in Table 3.
 \hline
 PROBE & Probe name (one of the probes interrogating the gene) \\
 GENE & microRNA name \\
-PROBE chr\_coord & Agilent chromosomal coordinate \\ 
 M & Fold change \\
 A & Mean of the intensity for that microRNA \\
 t & moderated t-statistic \\
@@ -854,7 +883,6 @@ The columns given in this case in the output files are shown in Table 4.
 \hline
 PROBE & Probe name (one of the probes interrogating the gene) \\
 GENE & microRNA name \\
-PROBE chr\_coord & Agilent chromosomal coordinate \\ 
 M & Fold change \\
 A & Mean of the intensity for that microRNA \\
 t & moderated t-statistic \\

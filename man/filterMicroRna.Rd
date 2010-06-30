@@ -8,14 +8,14 @@
 filterMicroRna(ddNORM, 
 	dd,
 	control,
-	IsGeneDetected = TRUE,
-	wellaboveNEG = FALSE,
-	limIsGeneDetected = 75,
-	limNEG = 75,
-	makePLOT=FALSE,
+	IsGeneDetected,
+	wellaboveNEG,
+	limIsGeneDetected,
+	limNEG,
+	makePLOT,
 	targets,
-	verbose=FALSE,
-  writeout=FALSE)
+	verbose,
+  	writeout) 
 }
 \arguments{
   \item{ddNORM}{RGList with the Total Gene Signal in log2 scale to be FILTERED out according to a Quality FLAG }
@@ -78,7 +78,8 @@ ddPROC=filterMicroRna(ddNORM,
                       limNEG=25,
                       makePLOT=FALSE,
                       targets.micro,
-		      verbose=TRUE)
+		      verbose=FALSE,
+		      writeout=FALSE)
 }
 \keyword{documentation}
 \keyword{utilities}

@@ -4,12 +4,12 @@ function(ddNORM,
 	control,
 	IsGeneDetected,
 	wellaboveNEG,
-	limIsGeneDetected=75,
-	limNEG=75,
+	limIsGeneDetected,
+	limNEG,
 	makePLOT,
 	targets,
 	verbose,
-  writeout) {
+  	writeout) {
 
 	if(verbose){
 	cat("FILTERING PROBES BY FLAGS","\n")

@@ -148,7 +148,7 @@ switch(method,separate={
 ## WRITE: ALL LIST.txt file: ALL genes 
 
 	index.ALL=seq(1:dim(eset)[1])
-	write.LIST.miRNA2(fit2.ord,index.ALL,DEGLIST.ALL,DEmethod,i,adj.pval,fdr,ddset.ord)
+	write.LIST.miRNA(fit2.ord,index.ALL,DEGLIST.ALL,DEmethod,i,adj.pval,fdr,ddset.ord)
 
 	filename=paste(DEGLIST.ALL,"html",sep=".")
  	genelist=fit2.ord$genes[adj.pval <= PVcut,]
@@ -171,7 +171,7 @@ switch(method,separate={
 ## WRITE: DEG.txt file: ALL nDDEE genes 
 	# !!! PASAR LISTAS FIT ORDENADO, PARA QUE SAQUE LISTAS ORDENADAS POR PVALOR 
 	
-	write.LIST.miRNA2(fit2.ord.DE,nDDEE.ord,DEGLIST,DEmethod,i,adj.Fpval.DE,fdr.Fpval.DE,ddset.ord.DE)
+	write.LIST.miRNA(fit2.ord.DE,nDDEE.ord,DEGLIST,DEmethod,i,adj.Fpval.DE,fdr.Fpval.DE,ddset.ord.DE)
 
 	filename=paste(DEGLIST,"html",sep=".")
  	genelist=fit2.ord.DE$genes[nDDEE.ord,]
