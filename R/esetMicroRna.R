@@ -1,10 +1,10 @@
 `esetMicroRna` <-
-function(RGlist,targets,makePLOT=FALSE,verbose=FALSE) {
+function(uRNAList,targets,makePLOT=FALSE,verbose=FALSE) {
 
 	
-	if (!is(RGlist, "RGList")){
-	  stop("'input' must be a RGList",call. = FALSE)
-   	 	if (is.null(dim(RGlist)[1])) {
+	if (!is(uRNAList, "uRNAList")){
+	  stop("'input' must be a uRNAList",call. = FALSE)
+   	 	if (is.null(dim(uRNAList)[1])) {
         		stop("'input' is empty",call. = FALSE)
 	 	}
 	}
@@ -22,14 +22,14 @@ function(RGlist,targets,makePLOT=FALSE,verbose=FALSE) {
 		stop("'targets' needs 'GErep' field")
 	}
 
-	goON=all(rownames(targets) == colnames(RGlist$G))
+	goON=all(rownames(targets) == colnames(uRNAList$iTGS))
 		if(!goON){
-		stop("rownames in pData(targets) different from colnames RGlist$G",call. = FALSE)
+		stop("rownames in pData(targets) different from colnames uRNAList$TGS",call. = FALSE)
 		}
 		phenoData=new("AnnotatedDataFrame",data=targets)
 
-	TMP=RGlist$G
-	rownames(TMP)=RGlist$genes$GeneName
+	TMP=uRNAList$TGS
+	rownames(TMP)=uRNAList$genes$GeneName
 	colnames(TMP)=g2
 	nGEN=dim(TMP)[1]
 	nARR=dim(TMP)[2]

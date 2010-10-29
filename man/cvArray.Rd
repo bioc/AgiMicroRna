@@ -9,7 +9,7 @@
 cvArray(ddDUP, foreground = c("MeanSignal", "ProcessedSignal"),targets,verbose=FALSE)
 }
 \arguments{
-  \item{ddDUP}{RGList, containing the output from \code{readMicroRnaAFE}  }
+  \item{ddDUP}{uRNAList, containing the output from \code{readMicroRnaAFE}  }
   \item{foreground}{Specifies the signal used, only "MeanSignal" or "ProcessedSignal" can be used}
   \item{targets}{data.frame with the target structure  }
   \item{verbose}{logical, if \code{TRUE} prints out output}	

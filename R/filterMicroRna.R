@@ -27,8 +27,8 @@ function(ddNORM,
 		stop("'targets' needs 'GErep' field")
 	}
 
-	if (!is(ddNORM, "RGList")){
-	  stop("'input' must be a RGList")
+	if (!is(ddNORM, "uRNAList")){
+	  stop("'input' must be a uRNAList")
    	 	if (is.null(dim(ddNORM)[1])) {
         		stop("'input' is empty")
 	 	}
@@ -63,18 +63,18 @@ if(!missing(makePLOT)) {
 	maintitle="FILTERED SIGNAL"
 	
 		dev.new()
-		plotDensityMicroRna(ddFILT$G,maintitle)
+		plotDensityMicroRna(ddFILT$TGS,maintitle)
 
 		dev.new()
-		boxplotMicroRna(ddFILT$G,maintitle,colorfill)
+		boxplotMicroRna(ddFILT$TGS,maintitle,colorfill)
 	
 		dev.new()
-		hierclusMicroRna(ddFILT$G,targets$GErep,methdis="euclidean",
+		hierclusMicroRna(ddFILT$TGS,targets$GErep,methdis="euclidean",
         	methclu="complete",sel=FALSE,100)
 
 		maintitle="FILTERED SIGNAL - RLE "
 		dev.new()
-		RleMicroRna(ddFILT$G,maintitle,colorfill)
+		RleMicroRna(ddFILT$TGS,maintitle,colorfill)
 	}
 	}
 	return(ddFILT) 

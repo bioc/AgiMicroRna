@@ -2,8 +2,8 @@
 function(ddDUP,foreground=c("MeanSignal","ProcessedSignal"),targets,verbose=FALSE){
 
 
-	if (!is(ddDUP, "RGList")){
-	  stop("'input' must be a RGList",call. = FALSE)
+	if (!is(ddDUP, "uRNAList")){
+	  stop("'input' must be a uRNAList",call. = FALSE)
    	 	if (is.null(dim(ddDUP)[1])) {
         		stop("'input' is empty",call. = FALSE)
 	 	}
@@ -18,13 +18,13 @@ function(ddDUP,foreground=c("MeanSignal","ProcessedSignal"),targets,verbose=FALS
 		stop("'Foreground' must be either 'ProcessedSignal' or 'MeanSignal'",call.=FALSE)	
 	}else{ 
 		if(foreground == "ProcessedSignal"){
-	  		ddDUP$G=ddDUP$Gb
+	  		ddDUP$G=ddDUP$procS
 			if(verbose){
 	  		cat("Foreground: ProcessedSignal","\n")
 			cat("\n")
 			}
 		}else{
-			ddDUP$G=ddDUP$Rb
+			ddDUP$G=ddDUP$meanS
 			if(verbose){
 			cat("Foreground: MeanSignal","\n")
 			cat("\n")
@@ -91,7 +91,6 @@ function(ddDUP,foreground=c("MeanSignal","ProcessedSignal"),targets,verbose=FALS
 		cat("------------------------------------------------------","\n")
 		}
 		
-#		cv.array(ddDUP,rN,targets,"GeneName",verbose)
 
 } # end function 
 

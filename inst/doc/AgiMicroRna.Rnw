@@ -173,38 +173,44 @@ Image analysis and data collection were carried out
 using the \texttt{Agilent Feature Extraction 9.1.3.1} (AFE) \cite{AFE}.
 with default settings. 
 
-To read the scanned data files into \texttt{R} we use the \Rfunction{readMicroRnaAFE} 
-function, which is a wrapper of the \Rpackage{limma} function \Rfunction{read.maimages}
-\cite{limma}. \Rfunction{readMicroRnaAFE} creates an \Robject{RGList} object
-that includes the variables that we need for the data processing and statistical analysis.  
+To read the scanned data files into \texttt{R} we use the \Rfunction{readMicroRnaAFE}. 
+This function creates an object of a class \Robject{uRNAList}, similar to the \Robject{RGList} object
+created by \Rpackage{limma} \cite{limma},  
+that includes the variables that we need for the data processing and statistical analysis  
+(see Table 2). In particular, the columns "gTotalGeneSignal", "gTotalProbeSignal", "gMeanSignal" and
+"gProcessedSignal" loaded from the scanned data files, are stored in the  
+following 4 different slots: \Robject{TGS}, \Robject{TPS}, \Robject{meanS} and \Robject{procS}. 
+We have created this new class object (adopted from \Rpackage{limma}) to use more appropiate names
+for the signal values that we use in AgiMicroRna. 
 
-By default, \Rfunction{readMicroRnaAFE} calls the \Rfunction{read.maimages} function  
-as it is shown below. 
+The \Rfunction{readMicroRnaAFE} calls a new function \Rfunction{read.agiMicroRna},
+similar to the \Rfunction{read.maimages} in \Rpackage{limma}. \Rfunction{read.agiMicroRna}  
+is internally used as follows:  
 
 \begin{Sinput}
 ## NOT RUN 
-
-read.maimages(files=targets$FileName,source="agilent",
-            		columns=list(Rf="gTotalGeneSignal",
-                                 Gf="gTotalProbeSignal",
-                                 Rb="gMeanSignal",
-                                 Gb="gProcessedSignal"),
-                   	other.columns=list(IsGeneDetected="gIsGeneDetected",
+dd=read.agiMicroRna(targets,
+             columns=list(TGS="gTotalGeneSignal",
+                                 TPS="gTotalProbeSignal",
+                                 meanS="gMeanSignal",
+                                 procS="gProcessedSignal"),
+                   other.columns=list(IsGeneDetected="gIsGeneDetected",
                                         IsSaturated="gIsSaturated",
                                         IsFeatNonUnifOF="gIsFeatNonUnifOL",
                                         IsFeatPopnOL="gIsFeatPopnOL",
                                         BGKmd="gBGMedianSignal",
                                         BGKus="gBGUsed"),
-                     	annotation = c( "ControlType", "ProbeName","GeneName"),
-                     	verbose=TRUE,sep="\t",quote="")
+                     annotation = c( "ControlType", "ProbeName","GeneName"),
+                     verbose=TRUE)
+
 \end{Sinput}
 
 This implies that in the data files we must have all the columns that are indicated
-in the calling to \Rfunction{read.maimages}. If any of those columns are missing, the 
+in the calling to \Rfunction{read.agiMicroRna}. If any of those columns are missing, the 
 \Rfunction{readMicroRnaAFE} will produce an error message. In this case, we will have to 
-call the  \Rfunction{read.maimages} by ourselves, omitting those columns that are not 
+call the  \Rfunction{read.agiMicroRna} by ourselves, omitting those columns that are not 
 present in the data files. For the data pre-processing and differential expression
-analysis, the columns that we must read at least are: \Robject{gTotalGeneSignal} and/or
+analysis, the columns that we must read at least are: \Robject{gTotalGeneSignal},
 \Robject{gMeanSignal}, \Robject{gIsGeneDetected}, \Robject{ControlType}, \Robject{ProbeName},
 and \Robject{GeneName}. 
 
@@ -215,7 +221,7 @@ A typical use of \Rfunction{readMicroRnaAFE}  is like:
 > dd.micro=readMicroRnaAFE(targets.micro,verbose=TRUE)
 \end{Sinput}
 
-\Rpackage{AgiMicroRna} contains \Robject{RGList} \texttt{dd.micro} that can be used
+\Rpackage{AgiMicroRna} contains \Robject{uRNAList} \texttt{dd.micro} that can be used
 to explore the capabilities of the package. \texttt{dd.micro} can  
 be loaded into \texttt{R} using the \Rfunction{data} command.  
 
@@ -225,7 +231,7 @@ class(dd.micro)
 dim(dd.micro)
 @
 
-The variables stored in the \Robject{RGList} \texttt{dd.micro} 
+The variables stored in the \Robject{uRNAList} \texttt{dd.micro} 
 are shown in Table 2. 
 
 <<>>=
@@ -238,10 +244,10 @@ print(names(dd.micro))
 \begin{tabular}{|c|l|}
 \hline \em variable & \em data \\
 \hline
-\texttt{dd.micro\$R} & \texttt{gTotalGeneSignal} \\
-\texttt{dd.micro\$G} & \texttt{gTotalProbeSignal} \\
-\texttt{dd.micro\$Rb} & \texttt{gMeanSignal} \\
-\texttt{dd.micro\$Gb} & \texttt{gProcessedSignal} \\
+\texttt{dd.micro\$TGS} & \texttt{gTotalGeneSignal} \\
+\texttt{dd.micro\$TPS} & \texttt{gTotalProbeSignal} \\
+\texttt{dd.micro\$meanS} & \texttt{gMeanSignal} \\
+\texttt{dd.micro\$procS} & \texttt{gProcessedSignal} \\
 \texttt{dd.micro\$targets} & File names \\
 \texttt{dd.micro\$genes\$ProbeName} & Probe Name \\
 \texttt{dd.micro\$genes\$GeneName} & microRNA Name \\
@@ -255,7 +261,7 @@ print(names(dd.micro))
 \hline
 \end{tabular}
 \label{tab:Flag1}
-\caption{Variables stored in the \texttt{RGList} object by \texttt{readMicroRnaAFE}}
+\caption{Variables stored in the \texttt{uRNAList} object by \texttt{readMicroRnaAFE}}
 \end{center}
 \end{table}
 
@@ -369,11 +375,11 @@ qcPlots(dd.micro,offset=5,
 The same plots can be also generated calling the corresponding 
 functions individually. Next we show how to use these functions 
 using the \texttt{gMeanSignal}. Recall, that the \texttt{gMeanSignal} is 
-stored in \texttt{dd.micro\$Rb}. 
+stored in \texttt{dd.micro\$meanS}. 
 
 \begin{center}
 <<BoxPlot,fig=TRUE>>=
-boxplotMicroRna(log2(dd.micro$Rb),
+boxplotMicroRna(log2(dd.micro$meanS),
 	maintitle='log2 Mean Signal',
 	colorfill= 'orange')
 @
@@ -382,7 +388,7 @@ boxplotMicroRna(log2(dd.micro$Rb),
 
 \begin{center}
 <<plotDensity,fig=TRUE>>=
-plotDensityMicroRna(log2(dd.micro$Rb),
+plotDensityMicroRna(log2(dd.micro$meanS),
 	maintitle='log2 Mean Signal')
 @
 \end{center}
@@ -392,7 +398,7 @@ plotDensityMicroRna(log2(dd.micro$Rb),
 \begin{center}
 <<MA,fig=TRUE>>=
 ddaux=dd.micro
-ddaux$G=log2(dd.micro$Rb)
+ddaux$G=log2(dd.micro$meanS)
 mvaMicroRna(ddaux,
 	maintitle='log2 Mean Signal',
 	verbose=FALSE)
@@ -405,7 +411,7 @@ rm(ddaux)
 
 \begin{center}
 <<RLE,fig=TRUE>>=
-RleMicroRna(log2(dd.micro$Rb),
+RleMicroRna(log2(dd.micro$meanS),
 	maintitle='log2 Mean Signal - RLE')
 @
 \end{center}
@@ -414,7 +420,7 @@ RleMicroRna(log2(dd.micro$Rb),
 
 \begin{center}
 <<hclust,fig=TRUE>>=
-hierclusMicroRna(log2(dd.micro$Rb),targets.micro$GErep,
+hierclusMicroRna(log2(dd.micro$meanS),targets.micro$GErep,
 		methdis="euclidean",
                 methclu="complete",
 		sel=TRUE,100)
@@ -459,11 +465,11 @@ of them replicated 8 times, or using 4 different probes replicated 4 times.
 In \Rpackage{AgiMicroRna} the processed gene signal that is going to 
 be analyzed can be obtained using two different protocols. 
 The first uses the \texttt{gTotalGeneSignal} (TGS) computed by the AFE algorithm \cite{AFE}
-and stored in the \Robject{RGList} (\texttt{dd.micro\$R}) after reading the data. 
+and stored in the \Robject{uRNAList} (\texttt{dd.micro\$TGS}) after reading the data. 
 The second option obtains an estimate of the normalized gene signal using the
 RMA algorithm \cite{RMA}. The RMA method is explained in the next section.
 
-The function \Rfunction{tgsMicroRna} creates an \Robject{RGList} containing the
+The function \Rfunction{tgsMicroRna} creates an \Robject{uRNAList} containing the
 \texttt{gTotalGeneSignal} processed by the AFE software. This signal might be used for making 
 statistical inferences after a possible normalization step. 
 The TGS processed by AFE \cite{AFE} may contain negative values. To obtain
@@ -472,7 +478,7 @@ the signals  or we can select the half option in
 \Rfunction{tgsMicroRna}, which set to 0.5 all the values smaller than
 0.5. To use the \texttt{offset} option we have to set \texttt{half=FALSE}, otherwise the half
 method is used by default. The offset option, adds to each signal the quantity
-\Robject{(abs( min(ddTGS\$R)) + offset)}, where \Robject{ddTGS\$R} is the matrix that contains the
+\Robject{(abs( min(ddTGS\$TGS)) + offset)}, where \Robject{ddTGS\$TGS} is the matrix that contains the
 \texttt{gTotalGeneSignal}.
 
 <<tgsMicroRna,eval=TRUE>>=
@@ -483,8 +489,8 @@ ddTGS=tgsMicroRna(dd.micro,
 
 @
 
-Finally, \Rfunction{tgsMicroRna} stores the estimated TGS in \Robject{ddTGS\$G} 
-\Robject{ddTGS\$R}, \Robject{ddTGS\$Gb} and \Robject{ddTGS\$Rb}. Be aware that 
+Finally, \Rfunction{tgsMicroRna} stores the estimated TGS in the four fields \Robject{ddTGS\$TGS} 
+\Robject{ddTGS\$TPS}, \Robject{ddTGS\$meanS} and \Robject{ddTGS\$procS}. Be aware that 
 this TGS is not in log2 scale. 
 
 \section{Normalization between arrays}
@@ -517,7 +523,7 @@ ddNORM=tgsNormalization(ddTGS,
 		verbose=TRUE)
 @
 
-\Rfunction{tgsNormalization} creates an \Robject{RGList} object containing the 
+\Rfunction{tgsNormalization} creates an \Robject{uRNAList} object containing the 
 normalized total gene signal in log 2 scale.  
 If we set makePLOTpre = TRUE and makePLOTpost = TRUE, a density
 plot, a boxplot, and MA plot, a
@@ -556,16 +562,19 @@ ddTGS.rma=rmaMicroRna(dd.micro,
 
 @
 
+Finally, \Rfunction{rmaMicroRna} stores the estimated RMA signal in the four fields \Robject{ddTGS.rma\$TGS} 
+\Robject{ddTGS.rma\$TPS}, \Robject{ddTGS.rma\$meanS} and \Robject{ddTGS.rma\$procS}. Be aware that 
+this estimated signal estimated by function{rmaMicroRna} is now in log2 scale.  
 To get some plots with the gene signal processed by RMA, we can use
-the code of the following example. Remember that the rmaMicroRna() ouput is in log2 scale. 
+the code of the following example. 
 
 \begin{Sinput}
-> MMM=ddTGS.rma$Rb 
-> colnames(MMM)=colnames(dd.micro$Rb)
+> MMM=ddTGS.rma$meanS 
+> colnames(MMM)=colnames(dd.micro$meanS)
 > maintitle='TGS.rma'
 > colorfill='blue'
 > ddaux=ddTGS.rma
-> ddaux$G=MMM	   
+> ddaux$meanS=MMM	   
 > mvaMicroRna(ddaux,maintitle,verbose=TRUE)
 > rm(ddaux)
 > RleMicroRna(MMM,"RLE TGS.rma",colorfill)
@@ -573,7 +582,9 @@ the code of the following example. Remember that the rmaMicroRna() ouput is in l
 > plotDensityMicroRna(MMM,maintitle)
 \end{Sinput}
 
-
+In the code above, be aware that \Rfunction{mvaMicroRna} plots by default whatever is 
+contained in \Robject{ddaux\$meanS}, so first, we create this \Robject{ddaux} object
+and then, we stored in \Robject{ddaux\$meanS} the matrix we want to use. 
 After the total gene signal have been obtained, either extracting the TGS produced 
 by AFE, or using the RMA algorithm, we can filter out the signals using the
 FLAGS attached to them by the AFE algorithm. 
@@ -598,13 +609,13 @@ we set limit that is the minimum \% of features that they must remain in at leas
 one experimental condition with a gIsGeneDetected-FLAG = 1 (Is Detected).
 
 Additionally, if we want to be more demanding, we can remove the microRNAs whose
-expression are close to the expression of the negative control features. As
+\Robject{gMeanSignal} expression are close to the expression of the negative control features. As
 before se set a limit for the \% of microRNAs that they must above a Limit expression
 value, in at least, one of the experimental conditions. The Limit expression value
 is defined as Mean(negative control expression)  + 1.5 x SD(negative control
 expression)
 
-The function returns a \Robject{RGList} containing the FILTERED data. In order to allow
+The function returns a \Robject{uRNAList} containing the FILTERED data. In order to allow
 the tracking of features that may have been filtered out from the original raw
 data, the following files are given:
 

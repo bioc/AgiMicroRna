@@ -17,7 +17,7 @@ boxplotMicroRna(object, maintitle, colorfill, xlab, ylab)
 \author{ Pedro Lopez-Romero }
 \examples{
 		data(dd.micro)
-		MMM=log2(dd.micro$Rb)
+		MMM=log2(dd.micro$meanS)
                 boxplotMicroRna(MMM,
                 	maintitle="log2 Mean Signal",
                 	colorfill="green",

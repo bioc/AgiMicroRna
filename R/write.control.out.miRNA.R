@@ -2,8 +2,8 @@
 function(ddFILT,selSNR,targets){ 
 
 
-	if (!is(ddFILT, "RGList")){
-	  stop("'input' must be a RGList")
+	if (!is(ddFILT, "uRNAList")){
+	  stop("'input' must be a uRNAList")
    	 	if (is.null(dim(ddFILT)[1])) {
         		stop("'input' is empty")
 	 	}
@@ -21,7 +21,7 @@ function(ddFILT,selSNR,targets){
 	}
 
 	PROBE_ID=ddFILT$genes$ProbeName
-	values=round(ddFILT$G,3)
+	values=round(ddFILT$meanS,3)
 	flagsGID=matrix(ddFILT$other$gIsGeneDetected,nrow=dim(ddFILT)[1],ncol=dim(ddFILT)[2])
 	GENE_ID=ddFILT$genes$GeneName
 

@@ -13,7 +13,7 @@ CM, DE, DEmethod, MTestmethod, PVcut, Mcut,verbose=FALSE)
 }
 \arguments{
   \item{eset}{ ExpressionSet containing the Total Gene processed data }
-  \item{ddset}{ An RGList object containing the Total Gene proceseed data }
+  \item{ddset}{ An uRNAList object containing the Total Gene proceseed data }
   \item{targets}{data.frame with the target structure }
   \item{fit2}{MArrayLM object from \code{eBayes} 'limma' function}
   \item{CM}{Contrast matrix }
@@ -81,7 +81,7 @@ CM, DE, DEmethod, MTestmethod, PVcut, Mcut,verbose=FALSE)
  }
 \author{ Pedro Lopez-Romero }
 \seealso{
-        An 'RGList' example containing proccesed data is in
+        A 'uRNAList' example containing proccesed data is in
         \code{ddPROC} and an overview of how the processed data is produced
         is given in \code{filterMicroRna}. The ExpressionSet object can be
         generated using \code{esetMicroRna}

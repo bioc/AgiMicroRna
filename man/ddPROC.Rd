@@ -1,9 +1,9 @@
 \name{ddPROC}
 \alias{ddPROC}
 \docType{data}
-\title{ Processed miRNA data  (RGList) }
+\title{ Processed miRNA data  (uRNAList) }
 \description{
-	Filtered and Normalized miRNA data stored in a RGList object. 
+	Filtered and Normalized miRNA data stored in a uRNAList object. 
 }
 \usage{data(ddPROC)}
 \details{

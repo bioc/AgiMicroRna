@@ -33,7 +33,7 @@ RleMicroRna(object, maintitle, colorfill)
 \author{ Pedro Lopez-Romero }
 \examples{
 		data(dd.micro)
-                RleMicroRna(log2(dd.micro$Rb),
+                RleMicroRna(log2(dd.micro$meanS),
 			maintitle="log2 Mean Signal RLE",
 			colorfill="orange")
 }

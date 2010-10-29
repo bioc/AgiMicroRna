@@ -22,12 +22,12 @@
   of 'limma' package.
 
   Data, colected with the Agilent Feature Extraction Software, are stored
-  in a RGList object with the following components:
+  in a uRNAList object with the following components:
 
-                - dd.micro\$R:                        'gTotalGeneSignal'
-                - dd.micro\$G:                        'gTotalProbeSignal'
-                - dd.micro\$Rb:                       'gMeanSignal'
-                - dd.micro\$Gb:                       'gProcessedSignal'
+                - dd.micro\$TGS                       'gTotalGeneSignal'
+                - dd.micro\$TPS                       'gTotalProbeSignal'
+                - dd.micro\$meanS                     'gMeanSignal'
+                - dd.micro\$procS                     'gProcessedSignal'
                 - dd.micro\$targets                   'targets'
                 - dd.micro\$genes\$ProbeName          'Probe Name'
                 - dd.micro\$genes\$GeneName           'microRNA Name'
@@ -40,21 +40,21 @@
                 - dd.micro\$other\$gBGUsed    	      'gBGUsed'
 }
 \value{
- An RGList containing:
-  \item{RGList\$R }{matrix, 'gTotalGeneSignal'}
-  \item{RGList\$G }{matrix, 'gTotalProbeSignal'}
-  \item{RGList\$Rb }{matrix, 'gMeanSignal'}
-  \item{RGList\$Gb }{matrix, 'gProcessedSignal'}
-  \item{RGList\$targets }{data.frame, 'FileName'}
-  \item{RGList\$genes\$ProbeName }{character, 'AGilent Probe Name'}
-  \item{RGList\$genes\$GeneName }{character, 'microRNA Name'}
-  \item{RGList\$genes\$ControlType }{integer, '0'= Feature, '1'= Positive control, '-1'= Negative control}
-  \item{RGList\$other\$gIsGeneDetected }{matrix, FLAG to classify signal if 'IsGeneDetected=1' or 'not=0'}
-  \item{RGList\$other\$gIsSaturated }{matrix, FLAG to classify signal if 'IsSaturated = 1' or 'not=0'}
-  \item{RGList\$other\$gIsFeatPopnOL }{matrix, FLAG to classify signal if 'IsFeatPopnOL = 0' or 'not=1'}
-  \item{RGList\$other\$gIsFeatNonUnifOL }{matrix, FLAG to classify signal if 'gIsFeatNonUnifOL = 0' or 'not=1'}
-  \item{RGList\$other\$gBGMedianSignal }{matrix, gBGMedianSignal } 
-  \item{RGList\$other\$gBGUsed }{matrix, gBGUsed } 
+ A uRNAList containing the following elements:
+  \item{uRNAList\$TGS }{matrix, 'gTotalGeneSignal'}
+  \item{uRNAList\$TPS }{matrix, 'gTotalProbeSignal'}
+  \item{uRNAList\$meanS}{matrix, 'gMeanSignal'}
+  \item{uRNAList\$procS}{matrix, 'gProcessedSignal'}
+  \item{uRNAList\$targets }{data.frame, 'FileName'}
+  \item{uRNAList\$genes\$ProbeName }{character, 'AGilent Probe Name'}
+  \item{uRNAList\$genes\$GeneName }{character, 'microRNA Name'}
+  \item{uRNAList\$genes\$ControlType }{integer, '0'= Feature, '1'= Positive control, '-1'= Negative control}
+  \item{uRNAList\$other\$gIsGeneDetected }{matrix, FLAG to classify signal if 'IsGeneDetected=1' or 'not=0'}
+  \item{uRNAList\$other\$gIsSaturated }{matrix, FLAG to classify signal if 'IsSaturated = 1' or 'not=0'}
+  \item{uRNAList\$other\$gIsFeatPopnOL }{matrix, FLAG to classify signal if 'IsFeatPopnOL = 0' or 'not=1'}
+  \item{uRNAList\$other\$gIsFeatNonUnifOL }{matrix, FLAG to classify signal if 'gIsFeatNonUnifOL = 0' or 'not=1'}
+  \item{uRNAList\$other\$gBGMedianSignal }{matrix, gBGMedianSignal } 
+  \item{uRNAList\$other\$gBGUsed }{matrix, gBGUsed } 
 }
 
 

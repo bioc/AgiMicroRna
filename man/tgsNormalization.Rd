@@ -10,7 +10,7 @@
 tgsNormalization(ddTGS, NORMmethod = "quantile", makePLOTpre = FALSE, makePLOTpost = FALSE, targets,verbose=FALSE)
 }
 \arguments{
-  \item{ddTGS}{RGList, containing the output from \code{tgsMicroRna} }
+  \item{ddTGS}{uRNAList, containing the output from \code{tgsMicroRna} }
   \item{NORMmethod}{ character specifying the normalization method, 'none','quantile','scale'. The 
 			default is \code{quantile} }
   \item{makePLOTpre}{ logical, if \code{TRUE} QC plots with the Raw Total Gene Signal are displayed  }
@@ -20,7 +20,7 @@ tgsNormalization(ddTGS, NORMmethod = "quantile", makePLOTpre = FALSE, makePLOTpo
 }
 
 \value{
-	An RGList object containing the Normalized Total Gene Signal in log 2 scale 
+	A uRNAList object containing the Normalized Total Gene Signal in log 2 scale 
 }
 \references{ 
 	Smyth, G. K. (2005). Limma: linear models for microarray data. In:

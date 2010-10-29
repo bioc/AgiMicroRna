@@ -2,14 +2,14 @@
 \alias{rmaMicroRna}
 \title{ Getting the Total Gene Signal by RMA algorithm }
 \description{
-	The function creates an RGList containing the TotalGeneSignal computed
+	The function creates an uRNAList containing the TotalGeneSignal computed
 	by the RMA algorithm. This signal can be used for the statistical analysis.  
 }
 \usage{
 rmaMicroRna(dd, normalize, background)
 }
 \arguments{
-  \item{dd}{RGList, containing the output from \code{readMicroRnaAFE} }
+  \item{dd}{uRNAList, containing the output from \code{readMicroRnaAFE} }
   \item{normalize}{logical, if \code{TRUE} the signal is normalized between arrays
 	using the 'quantile' method}
   \item{background}{logical, if \code{TRUE} the signal is background corrected 
@@ -17,8 +17,8 @@ rmaMicroRna(dd, normalize, background)
 	observed intensities}
 }
 \details{
-	The function creates an RGList output that contains in the RGList$G, RGList$R,
-        RGList$Gb & RGList$Rb slots the Total Gene Signal (TGS) computed by the RMA algorithm. 
+	The function creates an uRNAList output that contains in the uRNAList$TGS, uRNAList$TPS,
+        uRNAList$meanS & uRNAList$procS slots the Total Gene Signal (TGS) computed by the RMA algorithm. 
 	The function uses the robust multiarray average (RMA) method from the 'affy' package. 
 	RMA obtains an estimate of the expression measure for each gene using all the replicated probes
 	for that gene. First, RMA obtains a background corrected intensity by fitting a normal + exponential
@@ -39,7 +39,7 @@ rmaMicroRna(dd, normalize, background)
 	RMA linear model described above.
 }
 \value{
-	RGList containing the Total Gene Signal computed
+	uRNAList containing the Total Gene Signal computed
         by the RMA algorithm in log 2 scale.  
 }
 \references{ 
@@ -63,7 +63,7 @@ rmaMicroRna(dd, normalize, background)
 data(dd.micro)
 ddTGS.rma=rmaMicroRna(dd.micro, normalize=TRUE, background=TRUE)
 dim(ddTGS.rma)
-RleMicroRna(ddTGS.rma$G,"RLE TGS.rma","blue")
+RleMicroRna(ddTGS.rma$TGS,"RLE TGS.rma","blue")
 }
 
 \keyword{documentation}

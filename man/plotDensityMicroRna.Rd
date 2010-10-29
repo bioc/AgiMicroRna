@@ -14,7 +14,7 @@ plotDensityMicroRna(object, maintitle)
 \author{ Pedro Lopez-Romero }
 \examples{
 	data(dd.micro)
-        plotDensity(log2(dd.micro$Rb),maintitle="log2 Mean Signal")
+        plotDensity(log2(dd.micro$meanS),maintitle="log2 Mean Signal")
 }
 \keyword{documentation}
 \keyword{utilities}

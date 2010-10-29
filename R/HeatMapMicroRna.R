@@ -35,4 +35,3 @@ subtitle=paste(as.character(size)," high variance genes")
 # ...........................................
 
 } # end function
-

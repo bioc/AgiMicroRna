@@ -1,8 +1,8 @@
 `filter.control.miRNA` <-
 function(ddNORM,targets,verbose,writeout){
 
-	if (!is(ddNORM, "RGList")){
-	  stop("'input' must be a RGList")
+	if (!is(ddNORM, "uRNAList")){
+	  stop("'input' must be a uRNAList")
    	 	if (is.null(dim(ddNORM)[1])) {
         		stop("'input' is empty")
 	 	}

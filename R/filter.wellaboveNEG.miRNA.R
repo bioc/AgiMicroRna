@@ -2,15 +2,15 @@
 function(ddFILT,dd,limNEG,SDtimes,targets,verbose,writeout){
 
 	 
-	if (!is(ddFILT, "RGList")){
-	  stop("'input ddFILT' must be a RGList")
+	if (!is(ddFILT, "uRNAList")){
+	  stop("'input ddFILT' must be a uRNAList")
    	 	if (is.null(dim(ddFILT)[1])) {
         		stop("'input' is empty")
 	 	}
 	}
 
-	if (!is(dd, "RGList")){
-	  stop("'input dd' must be a RGList")
+	if (!is(dd, "uRNAList")){
+	  stop("'input dd' must be a uRNAList")
    	 	if (is.null(dim(dd)[1])) {
         		stop("'input' is empty")
 	 	}
@@ -30,13 +30,13 @@ function(ddFILT,dd,limNEG,SDtimes,targets,verbose,writeout){
 	}
 
 	indexneg=which(dd$genes$ControlType == -1)
-	NEG=log2(dd$Rb[indexneg,])  # dd$G: MeanSignal 
+	NEG=log2(dd$meanS[indexneg,])  #  MeanSignal in original dd 
 	MeanNeg=apply(NEG,2,mean)
 	SdNeg=apply(NEG,2,sd)
 	Limit=MeanNeg + SDtimes*(SdNeg)
   
   	
-  	FLAG=ddFILT$G 
+  	FLAG=ddFILT$meanS 
   	indexSNR=apply(FLAG,1,filterWellAboveSIGNALv2,GErep,nGE,Limit,limNEG)
   	selSNR=which(unlist(indexSNR) == 1) #posiciones que pasan filtro 
 
@@ -45,7 +45,7 @@ function(ddFILT,dd,limNEG,SDtimes,targets,verbose,writeout){
 
 if(writeout){
 	outfile="IsNOTWellAboveNEG.txt"
-	VALUES=round(ddFILT$G,3)
+	VALUES=round(ddFILT$meanS,3)
 	write.filt.out.miRNA(ddFILT,selSNR,outfile,VALUES,targets) 
 }
 

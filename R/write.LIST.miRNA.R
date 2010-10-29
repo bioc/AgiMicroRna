@@ -6,8 +6,8 @@ function(fit2,index,outfile,DEmethod,i,adj.pval,fdr,ddset) {
 	}
 	
 	if(!missing(ddset)){
-		if(!is(ddset,"RGList")){
-			stop("'ddset' must be a RGList")
+		if(!is(ddset,"uRNAList")){
+			stop("'ddset' must be a uRNAList")
 		}
 	}else{
 		stop("'ddset' is needed")

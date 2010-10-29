@@ -19,7 +19,7 @@ mvaBASIC(object, colorfill, maintitle)
 \examples{
 	data(dd.micro)
 	op=par(mfrow=c(1,1),ask=TRUE)
-	mvaBASIC(log2(dd.micro$Rb),
+	mvaBASIC(log2(dd.micro$meanS),
 	colorfill="red",
         maintitle=" log2 Mean Signal")
 	par(op)

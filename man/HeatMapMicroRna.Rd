@@ -15,9 +15,9 @@ HeatMapMicroRna(object, size, maintitle)
 \seealso{ heatmap.2 }
 \examples{
 	data(ddPROC)
-        HeatMapMicroRna(ddPROC$G,
+        HeatMapMicroRna(ddPROC$TGS,
 		size=100,
-        	maintitle="100 High Var")
+        	maintitle="100 High Var genes")
 }
 \keyword{documentation}
 \keyword{utilities}

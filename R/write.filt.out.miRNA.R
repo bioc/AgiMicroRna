@@ -2,8 +2,8 @@
 function(ddFILT,selSNR,outfile,FLAG,targets){ 
 
 
-	if (!is(ddFILT, "RGList")){
-	  stop("'input' must be a RGList")
+	if (!is(ddFILT, "uRNAList")){
+	  stop("'input' must be a uRNAList")
    	 	if (is.null(dim(ddFILT)[1])) {
         		stop("'input' is empty")
 	 	}

@@ -1,5 +1,5 @@
 `mvaMicroRna` <-
-function(RGlist,maintitle,verbose=FALSE) {
+function(uRNAList,maintitle,verbose=FALSE) {
 
 
 # MVA plots of each array against the genewise Median intensity
@@ -10,19 +10,19 @@ cat("------------------------------------------------------","\n")
 cat("mvaMicroRna info:","\n")
 }
 
-nGEN=c(1:dim(RGlist$G)[1])
+nGEN=c(1:dim(uRNAList$meanS)[1])
 
-indexrep=which(RGlist$genes$ControlType == 0)
+indexrep=which(uRNAList$genes$ControlType == 0)
 
 LL=length(indexrep)
 if(verbose){
 cat(" FEATURES :	",LL,"\n")
 }
 # ------------------ POS Ctrl --------------------
-index1=which(RGlist$genes$ControlType == 1)
-index2=which(RGlist$genes$GeneName[index1] != "DarkCorner")
-index3=which(RGlist$genes$GeneName[index1[index2]] != "miRNABrightCorner30")
-index4=which(RGlist$genes$GeneName[index1[index2[index3]]] != "SCorner3")
+index1=which(uRNAList$genes$ControlType == 1)
+index2=which(uRNAList$genes$GeneName[index1] != "DarkCorner")
+index3=which(uRNAList$genes$GeneName[index1[index2]] != "miRNABrightCorner30")
+index4=which(uRNAList$genes$GeneName[index1[index2[index3]]] != "SCorner3")
 
 indexpos=nGEN[index1[index2[index3[index4]]]]
 
@@ -32,7 +32,7 @@ cat(" POSITIVE CTRL:		",LL,"\n")
 }
 
 ## ------------------ NEG Ctrl --------------------
-indexneg=which( RGlist$genes$ControlType == -1)
+indexneg=which( uRNAList$genes$ControlType == -1)
 
 LL=length(indexneg)
 if(verbose){
@@ -40,28 +40,27 @@ cat(" NEGATIVE CTRL:		",LL,"\n")
 }
 ## ------------------ STRUCTURAL  --------------------
 
-indexDC=which(RGlist$genes$GeneName == "DarkCorner" )
-indexGE=which(RGlist$genes$GeneName == "miRNABrightCorner30")
-indexSC=which(RGlist$genes$GeneName == "SCorner3")
+indexDC=which(uRNAList$genes$GeneName == "DarkCorner" )
+indexGE=which(uRNAList$genes$GeneName == "miRNABrightCorner30")
+indexSC=which(uRNAList$genes$GeneName == "SCorner3")
 
 LL=length(indexDC)+length(indexGE)+length(indexSC)
 if(verbose){
 cat(" STRUCTURAL:		",LL,"\n")
 }
 
-nARR=dim(RGlist$G)[2]
-##  RGlist$G=log2(RGlist$G)
-y=apply(RGlist$G,1,median)
+nARR=dim(uRNAList$meanS)[2]
+y=apply(uRNAList$meanS,1,median)
 
 for(i in 1:nARR) {
 
 if (!missing(maintitle)){
-what=paste(maintitle,colnames(RGlist$G)[i]," - ","genewise Median")
+what=paste(maintitle,colnames(uRNAList$meanS)[i]," - ","genewise Median")
 }else{
-what=paste(colnames(RGlist$G)[i]," - ","genewise Median")
+what=paste(colnames(uRNAList$meanS)[i]," - ","genewise Median")
 }
 
-  x=RGlist$G[,i]
+  x=uRNAList$meanS[,i]
 		A=(x+y)/2
 		M=(x-y)
 	 mva=plot(A,M,type="p",cex=0.7,col="blue",xlab="A",ylab="M")

@@ -18,7 +18,7 @@ qcPlots(dd,
 	targets)
 }
 \arguments{
-  \item{dd}{An RGList object containing the ouput from  \code{readMicroRnaAFE}} 
+  \item{dd}{A uRNAList object containing the ouput from  \code{readMicroRnaAFE}} 
   \item{offset}{numeric value to add to the intensities before log transforming}
   \item{MeanSignal}{logical, if \code{TRUE} "gMeanSignal" is used}
   \item{ProcessedSignal}{logical, if \code{TRUE} "gProcessedSignal"  is used }

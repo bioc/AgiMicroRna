@@ -11,8 +11,8 @@ function(eset,ddset,targets,fit2,
         		stop("'eset' is empty",call. = FALSE)
 	 	}
 	}
-	if (!is(ddset, "RGList")){
-	  stop("'ddset' must be a RGList",call. = FALSE)
+	if (!is(ddset, "uRNAList")){
+	  stop("'ddset' must be a uRNAList",call. = FALSE)
    	 	if (is.null(dim(ddset)[1])) {
         		stop("'ddset' is empty",call. = FALSE)
 	 	}

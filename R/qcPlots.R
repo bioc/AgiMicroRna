@@ -3,24 +3,17 @@ function(dd,offset=5,MeanSignal=TRUE,ProcessedSignal=FALSE,
 		TotalProbeSignal=FALSE,TotalGeneSignal=FALSE,
 		BGMedianSignal=FALSE,BGUsed=FALSE,targets){
 
-	if (!is(dd, "RGList")){
-	  stop("'input' must be a RGList")
+	if (!is(dd, "uRNAList")){
+	  stop("'input' must be a uRNAList")
    	 	if (is.null(dim(dd)[1])) {
         		stop("'input' is empty")
 	 	}
 	}
 	
-  
-#		Rf="gTotalGeneSignal"
-#		Gf="gTotalProbeSignal"
-#		Rb="gMeanSignal"
-#		Gb="gProcessedSignal"
-
-# --- Rb="gMeanSignal"     ----------
 
 if(MeanSignal){
 	
-MMM=dd$Rb
+MMM=dd$meanS
 min=min(MMM)
 
 for(i in 1:dim(MMM)[2]){
@@ -39,7 +32,7 @@ MMM[,i]=MMM[,i]+(abs(min)+offset)
 
 		dev.new()
 		ddaux=dd
-		ddaux$G=MMM	
+		ddaux$meanS=MMM	
 		mvaMicroRna(ddaux,maintitle,verbose=FALSE)
 		rm(ddaux)
 
@@ -55,7 +48,7 @@ MMM[,i]=MMM[,i]+(abs(min)+offset)
 # --- Gb="gProcessedSignal"  ----------
 
 if(ProcessedSignal){
-MMM=dd$Gb
+MMM=dd$procS
 min=min(MMM)
 
 for(i in 1:dim(MMM)[2]){
@@ -73,7 +66,7 @@ MMM[,i]=MMM[,i]+(abs(min)+offset)
 
 		dev.new()
 		ddaux=dd
-		ddaux$G=MMM	
+		ddaux$TPS=MMM	
 		mvaMicroRna(ddaux,maintitle,verbose=FALSE)
 		rm(ddaux)
 
@@ -87,7 +80,7 @@ MMM[,i]=MMM[,i]+(abs(min)+offset)
 if(TotalProbeSignal){
 up=which(duplicated(dd$genes$ProbeName)==FALSE)
 ddaux=dd[up,]
-MMM=ddaux$G
+MMM=ddaux$TPS
 min=min(MMM)
 
 for(i in 1:dim(MMM)[2]){
@@ -113,7 +106,7 @@ MMM[,i]=MMM[,i]+(abs(min)+offset)
 if(TotalGeneSignal){
 ddTGS=tgsMicroRna(dd,offset,half=FALSE,makePLOT=FALSE,verbose=FALSE)
 
-	MMM=log2(ddTGS$R)
+	MMM=log2(ddTGS$TGS)
 	maintitle="TotalGeneSignal"
 	colorfill="green"
 

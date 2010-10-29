@@ -18,8 +18,8 @@ filterMicroRna(ddNORM,
   	writeout) 
 }
 \arguments{
-  \item{ddNORM}{RGList with the Total Gene Signal in log2 scale to be FILTERED out according to a Quality FLAG }
-  \item{dd}{RGList, containing the output from \code{readMicroRnaAFE}}
+  \item{ddNORM}{uRNAList with the Total Gene Signal in log2 scale to be FILTERED out according to a Quality FLAG }
+  \item{dd}{uRNAList, containing the output from \code{readMicroRnaAFE}}
   \item{control}{logical, if \code{TRUE} it removes controls }
   \item{IsGeneDetected}{logical, if \code{TRUE} it filters genes according to gIsGeneDetected Flag. 
 			Flag = 1, then gene is detected 			
@@ -49,7 +49,7 @@ filterMicroRna(ddNORM,
   a minimum established criterion of quality. 
 }
 \value{
-  The function returns a RGList containing the FILTERED data. In order to allow
+  The function returns a uRNAList containing the FILTERED data. In order to allow
   the tracking of those microRNAs that may have been filtered out from
   the original raw data, the following files are given:
 

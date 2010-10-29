@@ -3,8 +3,8 @@ function(ddTGS,NORMmethod="quantile",
 		makePLOTpre=FALSE,makePLOTpost=FALSE,targets,verbose=FALSE){
 
 
-	if (!is(ddTGS, "RGList")){
-	  stop("'input' must be a RGList")
+	if (!is(ddTGS, "uRNAList")){
+	  stop("'input' must be a uRNAList")
    	 	if (is.null(dim(ddTGS)[1])) {
         		stop("'input' is empty")
 	 	}
@@ -16,7 +16,7 @@ function(ddTGS,NORMmethod="quantile",
 	if(!missing(makePLOTpre)) {
 	if(makePLOTpre){
 	
-	MMM=log2(ddTGS$G)
+	MMM=log2(ddTGS$TGS)
 	colorfill="blue"
 
 	maintitle="NOT NORM."
@@ -44,17 +44,17 @@ function(ddTGS,NORMmethod="quantile",
 
 	if(NORMmethod != "none"){
 		ddNORM=ddTGS
-		exprsNORM=normalizeBetweenArrays(ddTGS$G,method=NORMmethod) 
+		exprsNORM=normalizeBetweenArrays(ddTGS$TGS,method=NORMmethod) 
 			if(NORMmethod == "quantile"){
-				ddNORM$G=log2(exprsNORM)
+				ddNORM$TGS=log2(exprsNORM)
 			}else{
-				ddNORM$G=exprsNORM
+				ddNORM$TGS=exprsNORM
 			}
 		rm(exprsNORM)
 
 	}else{
 		ddNORM=ddTGS
-		ddNORM$G=log2(ddTGS$G)
+		ddNORM$TGS=log2(ddTGS$TGS)
 		 
 	}
 
@@ -70,7 +70,7 @@ function(ddTGS,NORMmethod="quantile",
 	colorfill="red"
 
 	maintitle="NORMALIZED SIGNAL"
-	MMM=ddNORM$G
+	MMM=ddNORM$TGS
 
 		dev.new()
 		plotDensityMicroRna(MMM,maintitle)
@@ -94,9 +94,9 @@ function(ddTGS,NORMmethod="quantile",
 	}
 	}
 
-  ddNORM$Gb=ddNORM$G
-  ddNORM$R=ddNORM$G 
-  ddNORM$Rb=ddNORM$G
+  ddNORM$TGS=ddNORM$TGS
+  ddNORM$TGS=ddNORM$TGS 
+  ddNORM$TGS=ddNORM$TGS 
 return(ddNORM)
 
 } # end function 

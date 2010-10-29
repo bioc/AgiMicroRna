@@ -21,7 +21,7 @@ hierclusMicroRna(object, GErep, methdis, methclu,sel, size)
  	data(targets.micro)
         data(ddPROC)
 
-	hierclusMicroRna(ddPROC$Rb,GErep,
+	hierclusMicroRna(ddPROC$TGS,GErep,
 		methdis="euclidean",
         	methclu="complete",
 		sel=FALSE,100)
