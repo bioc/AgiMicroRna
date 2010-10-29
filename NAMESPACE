@@ -1,22 +1,8 @@
 #useDynLib(AgiMicroRna)
 
-.onLoad <- function(lib, pkg) require(methods)
- exportPattern("^[^\\.]")
+importClassesFrom(Biobase, eSet, VersionedBiobase, Versioned)
 
-
-importClassesFrom(Biobase, eSet, ExpressionSet,VersionedBiobase, Versioned)
-exportClasses("uRNAList")
-exportMethods("show")
-
-S3method("[",uRNAList)
-S3method(dim, uRNAList)
-S3method(dimnames,uRNAList)
-S3method(length,uRNAList)
-S3method("dimnames<-",uRNAList)
-S3method(summary,uRNAList)
-
-
-expor(treadMicroRnaAFE,
+export(readMicroRnaAFE,
 	readTargets,
 	qcPlots,
 	boxplotMicroRna,
