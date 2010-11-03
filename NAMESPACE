@@ -16,7 +16,7 @@ S3method("dimnames<-",uRNAList)
 S3method(summary,uRNAList)
 
 
-expor(treadMicroRnaAFE,
+export(readMicroRnaAFE,
 	readTargets,
 	qcPlots,
 	boxplotMicroRna,
