@@ -1,15 +1,13 @@
-\name{uRNAList}
+\name{uRNAList-class}
 \docType{class}
-\alias{uRNAList}
 \alias{uRNAList-class}
-\alias{[,uRNAList-method}
 \alias{show,uRNAList-method}
 
 \title{uRNAList - class}
 
 \description{
-A list-based class (similar to the \code{RGList} class in \code{limma} package) for storing microRNA data
-of Agilent chips 
+A list-based class (similar to the \code{RGList} class in \code{limma} package) for the storing of 
+Agilent chips microRNA data
 \code{uRNAList} objects are created by \code{read.agiMicroRna}
 }
 

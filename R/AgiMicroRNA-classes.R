@@ -1,9 +1,8 @@
 # AgiMicroRNA-classes.R defined from classes.R limma FILE (by Gordon Smyth)
 
-setClass("uRNAList",
+
 #  Class to hold Agilent MicroRna data
-representation("list")
-)
+setClass("uRNAList",representation("list"))
 
 printHead <- function(x)
 #  Print leading 5 elements or rows of atomic object
@@ -98,53 +97,13 @@ function(object) {
                 }
         }
 })
-## adapted from subsetting.R   (Gordon Smyth) # ~/R-packages/PACKAGES/EXAMPLES/limma/R
-# [ method for subsetting the uRNALIST object 
 
-setMethod("[", "uRNAList",
-function(x, i, j, ..., drop=FALSE) {
-        if(!missing(i)) {
-                x$TGS = x$TGS[i,]
-                x$TPS = x$TPS[i,]
-                x$meanS = x$meanS[i,]
-                x$procS = x$procS[i,]
-
-                # genes (1d) $genes is data.frame 
-                x$genes = x$genes[i,]
-
-                # other (2d) 
-                x$other$gIsGeneDetected = x$other$gIsGeneDetected[i,]
-                x$other$gIsSaturated = x$other$gIsSaturated[i,]
-                x$other$gIsFeatNonUnifOL = x$other$gIsFeatNonUnifOL[i,]
-                x$other$gIsFeatPopnOL = x$other$gIsFeatPopnOL[i,]
-                x$other$gBGMedianSignal = x$other$gBGMedianSignal[i,]
-                x$other$gBGUsed = x$other$gBGUsed[i,]
-        }
-        if(!missing(j)) {
-                x$TGS <- x$TGS[,j]
-                x$TPS <- x$TPS[,j]
-                x$meanS <- x$meanS[,j]
-                x$procS <- x$procS[,j]
-
-                # other (2d) 
-                x$other$gIsGeneDetected = x$other$gIsGeneDetected[,j]
-                x$other$gIsSaturated = x$other$gIsSaturated[,j]
-                x$other$gIsFeatNonUnifOL = x$other$gIsFeatNonUnifOL[,j]
-                x$other$gIsFeatPopnOL = x$other$gIsFeatPopnOL[,j]
-                x$other$gBGMedianSignal = x$other$gBGMedianSignal[,j]
-                x$other$gBGUsed = x$gBGUsed[,j]
-
-                x$targets = x$targets[j,1]
-        }
-        return(x)
-})
 
 dim.uRNAList <- function(x) if(is.null(x$TGS)) c(0,0) else dim(as.matrix(x$TGS))
 length.uRNAList <- function(x) prod(dim(x))
 dimnames.uRNAList <- function(x) dimnames(x$TGS)
 
 .setdimnames <- function(x, value)
-
 {
 	exprmatrices <- c("TGS","TPS","meanS","procS")
 	for (a in exprmatrices) if(!is.null(x[[a]])) dimnames(x[[a]]) <- value
