@@ -49,8 +49,7 @@ cnames <- names(columns)
 required.col = unique(c(annotation, unlist(columns), unlist(other.columns))) 
 
 
-fullname <- filess[1]
-obj = read.columns(fullname, required.col, text.to.search="",skip = 9, 
+obj = read.columns(filess[1], required.col, text.to.search="",skip = 9, 
   sep = "\t",quote="\"", stringsAsFactors = FALSE,flush=TRUE)
 narray = length(filess)
 ngenes = dim(obj)[1]
@@ -90,7 +89,7 @@ for(n in 1:narray) {
   cat("reading file ",n," - ",filess[n],"\n")
   }
     if(n > 1){
-    obj = read.columns(fullname, required.col, text.to.search="",skip = 9, 
+    obj = read.columns(filess[n], required.col, text.to.search="",skip = 9, 
         sep = "\t",quote="\"", stringsAsFactors = FALSE,flush=TRUE)
     }
       
