@@ -5,7 +5,7 @@ function(object,maintitle) {
 	nARR=dim(object)[2]
 
 	colors <- rainbow(nARR,s=1,v=1,start = 0, 
-		end = max(1,nARR - 1)/nARR, gamma = 1)
+		end = max(1,nARR - 1)/nARR)
 	y.max=c()
 	x.max=c()
 
