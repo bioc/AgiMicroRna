@@ -16,7 +16,7 @@ function(fit2,index,outfile,DEmethod,i,adj.pval,fdr,ddset) {
  method=match.arg(DEmethod,c("separate","nestedF"))
 	switch(method,separate={
 
-	GENE_ID=fit2$genes[index,]
+	GENE_ID <- rownames(fit2)[index]
 	
 	M=round(fit2$coefficients[index,i],3)
 	A=round(fit2$Amean[index],3)
