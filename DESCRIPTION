@@ -1,12 +1,15 @@
 Package: AgiMicroRna
-Version: 2.13.1
-Title: Processing and Differential Expression Analysis of Agilent microRNA chips 
+Version: 2.13.2
+Title: Processing and Differential Expression Analysis of Agilent
+        microRNA chips
 Author: Pedro Lopez-Romero <plopez@cnic.es>
 Maintainer: Pedro Lopez-Romero <plopez@cnic.es>
-Imports:Biobase
-Depends: R (>= 2.10),methods,Biobase,limma,affy (>= 1.22),preprocessCore,affycoretools
-Suggests:geneplotter,marray,gplots,gtools,gdata,codelink
+Imports: Biobase
+Depends: R (>= 2.10),methods,Biobase,limma,affy (>=
+        1.22),preprocessCore,affycoretools
+Suggests: geneplotter,marray,gplots,gtools,gdata,codelink
 LazyLoad: yes
-Description: Processing and Analysis of Agilent microRNA data 
+Description: Processing and Analysis of Agilent microRNA data
 License: GPL-3
-biocViews: Microarray,AgilentChip,OneChannel,Preprocessing,DifferentialExpression,Bioinformatics
+biocViews: Microarray, AgilentChip, OneChannel, Preprocessing,
+        DifferentialExpression
